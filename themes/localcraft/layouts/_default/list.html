@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{/* Check if this page has sections defined (homepage pattern) */}}
+{{ if .Params.sections }}
+  {{/* Render content from _index.md if any */}}
+  {{ with .Content }}
+    <div class="container">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{/* Render dynamic sections */}}
+  {{ partial "sections-renderer.html" . }}
+{{ else }}
+  {{/* Default list layout */}}
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        {{ with .Params.label }}
+          <span class="section-label">{{ . }}</span>
+        {{ end }}
+        <h1 class="section-heading">{{ .Title }}</h1>
+        {{ with .Params.description }}
+          <p class="section-sub">{{ . }}</p>
+        {{ end }}
+      </header>
+
+      {{ with .Content }}
+        <div class="prose">
+          {{ . }}
+        </div>
+      {{ end }}
+
+      {{ range .Pages }}
+        <article>
+          <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.description | default .Summary }}
+            <p>{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+{{ end }}

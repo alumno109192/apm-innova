@@ -1,0 +1,22 @@
+{{/* Rejilla de tarjetas de producto. Recibe la lista de productos publicados. */}}
+<div class="productos__rejilla">
+  {{- range $p := . }}
+    {{- $mensaje := printf "%s %s" (i18n "whatsapp_producto") .nombre -}}
+    {{- with .formato }}{{ $mensaje = printf "%s (%s)" $mensaje . }}{{ end -}}
+    <article class="productos__tarjeta card">
+      {{- with .foto }}
+        {{ partial "image.html" (dict "src" . "alt" $p.nombre "sizes" "(max-width: 640px) 100vw, 33vw" "widths" (slice 400 800)) }}
+      {{- end }}
+      <h3 class="productos__nombre">{{ .nombre }}</h3>
+      {{- with .marca }}<p class="productos__marca">{{ . }}</p>{{ end }}
+      {{- with .descripcion }}<p class="productos__descripcion">{{ . }}</p>{{ end }}
+      {{- with .formato }}<p class="productos__formato">{{ . }}</p>{{ end }}
+      {{- with .precio }}<p class="productos__precio">{{ . }}</p>{{ end }}
+      {{- with partial "whatsapp-url.html" $mensaje }}
+        <a href="{{ . | safeURL }}" class="btn btn-terra productos__boton" target="_blank" rel="noopener noreferrer">
+          {{ partial "icono-whatsapp.html" 18 }} {{ i18n "lo_quiero" }}
+        </a>
+      {{- end }}
+    </article>
+  {{- end }}
+</div>

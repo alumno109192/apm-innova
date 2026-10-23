@@ -1,0 +1,23 @@
+{{- $a := site.Params.announcement -}}
+{{- if and $a $a.enabled -}}
+{{- $show := true -}}
+{{- with $a.date_from -}}
+  {{- if lt now (time .) -}}{{- $show = false -}}{{- end -}}
+{{- end -}}
+{{- with $a.date_until -}}
+  {{- if gt now (time (printf "%sT23:59:59Z" .)) -}}{{- $show = false -}}{{- end -}}
+{{- end -}}
+{{- if $show -}}
+{{- $msg := index $a.messages .Language.Lang -}}
+{{- if and $msg $msg.text -}}
+<div class="announcement announcement--{{ $a.type | default "info" }}" role="alert" aria-live="polite">
+  <div class="container announcement__inner">
+    <p class="announcement__message">{{ $msg.text | default $a.text }}</p>
+    {{- with $msg.link_url | default $a.link_url -}}
+    <a href="{{ . }}" class="announcement__link">{{ $msg.link_text | default $a.link_text }}</a>
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}
+{{- end -}}
+{{- end -}}

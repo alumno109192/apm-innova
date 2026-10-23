@@ -1,0 +1,174 @@
+{{ define "head" }}
+{{- $pricing := index hugo.Data .Language.Lang "pricing" -}}
+{{- if $pricing -}}
+{{- $services := slice -}}
+{{- range $pricing.categories -}}
+  {{- range .services -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- with .description -}}
+      {{- $service = merge $service (dict "description" .) -}}
+    {{- else -}}
+      {{- with .duration -}}
+        {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $currency := "EUR" -}}
+    {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
+    {{- $service = merge $service (dict "offers" $offer) -}}
+    {{- $services = $services | append $service -}}
+  {{- end -}}
+{{- end -}}
+{{- with $pricing.extras -}}
+  {{- range . -}}
+    {{- $service := dict "@type" "Service" "name" .name "provider" (dict "@type" "Organization" "name" site.Title "@id" (printf "%s#business" (site.BaseURL | string))) -}}
+    {{- with .description -}}
+      {{- $service = merge $service (dict "description" .) -}}
+    {{- else -}}
+      {{- with .duration -}}
+        {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $currency := "EUR" -}}
+    {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
+    {{- $service = merge $service (dict "offers" $offer) -}}
+    {{- $services = $services | append $service -}}
+  {{- end -}}
+{{- end -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "ItemList" "itemListElement" $services -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end -}}
+{{ end }}
+
+{{ define "main" }}
+<section class="pricing section">
+  <div class="container">
+    <header class="section-header animate-fade-up">
+      {{ with .Params.label }}
+        <span class="section-label">{{ . }}</span>
+      {{ end }}
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{- $pricing := index hugo.Data .Language.Lang "pricing" -}}
+    {{- if $pricing -}}
+
+    <div class="pricing__controls animate-fade-up delay-1">
+      <div class="pricing__search" id="pricing-search">
+        <input
+          type="search"
+          class="input"
+          placeholder="{{ .Params.search_placeholder | default "Search services..." }}"
+          aria-label="{{ .Params.search_placeholder | default "Search services" }}"
+          id="pricing-search-input"
+        >
+      </div>
+
+      <div class="pricing__filters" role="group" aria-label="{{ i18n "filter_by_category" | default "Filter by category" }}">
+        <button type="button" class="pricing__filter-btn active" data-category="all">
+          {{ .Params.filter_all | default "All" }}
+        </button>
+        {{- range $pricing.categories -}}
+        <button type="button" class="pricing__filter-btn" data-category="{{ .name | urlize }}">
+          {{ .name }}
+        </button>
+        {{- end -}}
+      </div>
+    </div>
+
+    <div class="pricing__categories animate-fade-up delay-2">
+      {{- range $pricing.categories -}}
+      <div class="pricing__category" data-category="{{ .name | urlize }}">
+        <div class="pricing__category-header">
+          <h2 class="pricing__category-name">{{ .name }}</h2>
+          {{ with .description }}
+            <span class="pricing__category-desc">{{ . }}</span>
+          {{ end }}
+        </div>
+
+        <table class="pricing__table">
+          <thead class="visually-hidden">
+            <tr>
+              <th scope="col">{{ i18n "service" | default "Service" }}</th>
+              <th scope="col">{{ i18n "service_info" | default "Info" }}</th>
+              <th scope="col">{{ i18n "price" | default "Price" }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{- range .services -}}
+            <tr
+              class="pricing__row"
+              data-name="{{ .name | lower }}"
+              data-tags="{{ delimit .tags " " }}"
+              data-description="{{ .description | default .duration | lower }}"
+            >
+              <td class="pricing__service">{{ .name }}</td>
+              <td class="pricing__description">{{ .description | default .duration }}</td>
+              <td class="pricing__price">{{ .price }}</td>
+            </tr>
+            {{- end -}}
+          </tbody>
+        </table>
+      </div>
+      {{- end -}}
+
+      {{- with $pricing.extras -}}
+      <div class="pricing__category pricing__category--extras">
+        <div class="pricing__category-header">
+          <h2 class="pricing__category-name">{{ $.Params.extras_title | default "Additional services" }}</h2>
+        </div>
+
+        <table class="pricing__table">
+          <thead class="visually-hidden">
+            <tr>
+              <th scope="col">{{ i18n "service" | default "Service" }}</th>
+              <th scope="col">{{ i18n "service_info" | default "Info" }}</th>
+              <th scope="col">{{ i18n "price" | default "Price" }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{- range . -}}
+            <tr
+              class="pricing__row"
+              data-name="{{ .name | lower }}"
+              data-tags="extras"
+              data-description="{{ .description | default .duration | lower }}"
+            >
+              <td class="pricing__service">{{ .name }}</td>
+              <td class="pricing__description">{{ .description | default .duration }}</td>
+              <td class="pricing__price">{{ .price }}</td>
+            </tr>
+            {{- end -}}
+          </tbody>
+        </table>
+      </div>
+      {{- end -}}
+    </div>
+
+    <p class="pricing__no-results" id="pricing-no-results" hidden>
+      {{ .Params.no_results | default "No services found matching your search." }}
+    </p>
+
+    {{- else -}}
+    <p class="pricing__empty">{{ .Params.empty_message | default "Pricing coming soon." }}</p>
+    {{- end -}}
+
+    {{ with .Content }}
+      <div class="pricing__content prose">
+        {{ . }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $pricingJs := resources.Get "js/pricing.js" | minify | fingerprint -}}
+{{- with $pricingJs -}}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
+{{- end -}}
+{{ end }}

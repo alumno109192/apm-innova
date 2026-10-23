@@ -1,0 +1,8 @@
+{{/*
+  whatsapp-url.html · enlace wa.me con el mensaje ya escrito.
+  Uso: {{ partial "whatsapp-url.html" "texto del mensaje" }}
+  Devuelve "" si no hay número configurado en params.whatsapp.
+*/}}
+{{- with site.Params.whatsapp -}}
+  {{- printf "https://wa.me/%s?text=%s" . (replace (urlquery $) "+" "%20") -}}
+{{- end -}}

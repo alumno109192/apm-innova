@@ -1,0 +1,75 @@
+# Compila la web con Hugo en cada PR y en main.
+# Publica en GitHub Pages solo desde main y solo si la variable del repo PUBLICAR vale "true"
+# (Settings → Secrets and variables → Actions → Variables). Así no sale a internet
+# hasta tener los textos legales y los datos confirmados.
+name: Web
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: 0.168.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Hugo extended ${{ env.HUGO_VERSION }}
+        run: |
+          curl -sSL -o "${{ runner.temp }}/hugo.tar.gz" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          mkdir -p "${{ runner.temp }}/hugo"
+          tar -xzf "${{ runner.temp }}/hugo.tar.gz" -C "${{ runner.temp }}/hugo"
+          echo "${{ runner.temp }}/hugo" >> "$GITHUB_PATH"
+
+      - name: Leer la URL de Pages
+        id: pages
+        if: github.ref == 'refs/heads/main' && vars.PUBLICAR == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Compilar
+        env:
+          HUGO_ENVIRONMENT: production
+        run: |
+          BASE="${{ steps.pages.outputs.base_url }}"
+          hugo --gc --minify --panicOnWarning ${BASE:+--baseURL "$BASE/"}
+
+      - name: Comprobar el resultado
+        run: |
+          for f in index.html servicios/index.html productos/index.html donde-estamos/index.html contacto/index.html sitemap.xml robots.txt; do
+            test -s "public/$f" || { echo "Falta public/$f"; exit 1; }
+          done
+          grep -q '"@type":"HairSalon"' public/index.html || { echo "Falta el JSON-LD HairSalon"; exit 1; }
+          if grep -rli 'pendiente' public --include=*.html; then echo "Hay «pendiente» visible en la web"; exit 1; fi
+
+      - name: Subir el sitio
+        if: github.ref == 'refs/heads/main' && vars.PUBLICAR == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && vars.PUBLICAR == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

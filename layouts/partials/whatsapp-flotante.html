@@ -1,0 +1,8 @@
+{{/* Botón flotante de WhatsApp para pedir cita, en todas las páginas. */}}
+{{- $url := partial "whatsapp-url.html" (i18n "whatsapp_cita") -}}
+{{- with $url }}
+<a href="{{ . | safeURL }}" class="wa-flotante" target="_blank" rel="noopener noreferrer" aria-label="{{ i18n "whatsapp_label" }}">
+  {{ partial "icono-whatsapp.html" 28 }}
+  <span class="wa-flotante__texto">{{ i18n "whatsapp_label" }}</span>
+</a>
+{{- end }}

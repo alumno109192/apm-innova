@@ -1,0 +1,66 @@
+/* Estilos propios de la web de APM Innova (encima del tema Localcraft). */
+
+/* Botón flotante de WhatsApp */
+.wa-flotante {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: #1f7a4d; /* verde oscuro: contraste AA con texto blanco */
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+.wa-flotante:hover,
+.wa-flotante:focus-visible { background: #17603c; color: #fff; }
+.wa-flotante:focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .wa-flotante { padding: 0.85rem; }
+  .wa-flotante__texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+
+/* Productos */
+.productos__intro { max-width: 60ch; margin: 0 auto var(--space-xl, 2rem); }
+.productos__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.productos__tarjeta { display: flex; flex-direction: column; gap: 0.5rem; }
+.productos__tarjeta img { width: 100%; height: auto; border-radius: 8px; }
+.productos__nombre { font-family: var(--serif); font-size: var(--text-xl); margin: 0; }
+.productos__marca, .productos__formato { color: var(--text-muted); font-size: var(--text-sm); margin: 0; }
+.productos__precio { font-weight: 500; font-size: var(--text-lg); margin: 0; }
+.productos__boton { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.productos__acciones { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+.productos__acciones .btn { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+/* Contacto */
+.contacto__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1.5rem;
+}
+.contacto__tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.contacto__tarjeta svg { color: var(--green); }
+.contacto__titulo { font-family: var(--serif); font-size: var(--text-2xl); margin: 0; }
+.contacto__tarjeta address { font-style: normal; }
+.contacto__tarjeta .btn { margin-top: auto; }
+.contacto__texto { margin-top: 2rem; }
+
+/* Sin foto de portada todavía: no se enseña el dibujo de relleno del tema */
+.hero__placeholder { display: none; }

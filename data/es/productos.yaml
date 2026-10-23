@@ -1,0 +1,14 @@
+# Catálogo de productos de APM Innova.
+# Solo se ven en la web los que llevan «publicar: true».
+# pendiente: fotos, marcas, formatos y precios (los pasa Jorge cuando haga las fotos en el salón).
+# Precio con IVA incluido y, en cosmética, también el precio por litro o por kilo (RD 3423/2000).
+#
+# Ejemplo de ficha (copiar, rellenar con datos reales y poner publicar: true):
+#   - nombre: "Champú …"
+#     marca: "…"
+#     formato: "250 ml"
+#     precio: "00,00 € (00,00 €/l)"
+#     descripcion: "…"
+#     foto: "/images/productos/champu.jpg"   # en assets/images/productos/
+#     publicar: true
+productos: []

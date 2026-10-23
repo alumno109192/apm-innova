@@ -1,0 +1,77 @@
+{{- /*
+  Section: about-team.html
+  Description: Displays team members with images and bios
+
+  Parameters (from .section):
+    - label (string, optional): Section label/eyebrow
+    - heading (string, optional): Section heading
+    - description (string, optional): Section description
+
+  Data source: hugo.Data.[lang].team
+*/ -}}
+
+{{- $lang := .page.Language.Lang -}}
+{{- with index hugo.Data $lang "team" }}
+<section class="about-team section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ $.section.label | default (i18n "our_team") }}</span>
+      <h2 class="section-heading">{{ $.section.heading | default (i18n "team_heading") }}</h2>
+      {{ with $.section.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{ end }}
+    </div>
+
+    <div class="about-team__members">
+      {{ range $index, $member := . }}
+        <div class="about-team__member {{ if (modBool $index 2) }}about-team__member--reverse{{ end }} animate-fade-up">
+          <div class="about-team__image">
+            {{ if $member.image }}
+              {{- partial "image.html" (dict
+                "src" $member.image
+                "alt" $member.name
+                "loading" "lazy"
+                "sizes" "(min-width: 768px) 400px, 100vw"
+                "widths" (slice 300 400 600 800)
+                "fit" ($member.imageFit | default "resize")
+                "aspectRatio" ($member.imageAspectRatio | default "")
+              ) -}}
+            {{ else }}
+              {{/* Avatar placeholder with initials */}}
+              <div class="about-team__avatar">
+                <span class="about-team__initials">{{ $member.initials }}</span>
+              </div>
+            {{ end }}
+          </div>
+          <div class="about-team__content">
+            <h3 class="about-team__name">{{ $member.name }}</h3>
+            <span class="about-team__role">{{ $member.role }}</span>
+            <p class="about-team__bio">{{ $member.bio }}</p>
+
+            {{/* Member credentials/certificates */}}
+            {{- with $member.credentials -}}
+              {{- partial "credentials-list.html" (dict
+                  "items" .
+                  "limit" 3
+                  "id" (printf "team-%d-creds" $index)
+                  "page" $.page) -}}
+            {{- end -}}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* Load credentials JS if any member has more than 3 credentials */}}
+{{- $needsJs := false -}}
+{{- range . -}}
+  {{- if and .credentials (gt (len .credentials) 3) -}}
+    {{- $needsJs = true -}}
+  {{- end -}}
+{{- end -}}
+{{- if $needsJs -}}
+  {{- $js := resources.Get "js/credentials.js" | minify | fingerprint -}}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+{{- end -}}
+{{ end }}

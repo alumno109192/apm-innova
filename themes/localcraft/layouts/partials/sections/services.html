@@ -1,0 +1,39 @@
+{{- $s := .section -}}
+{{- $lang := .page.Language.Lang -}}
+{{- $services := index hugo.Data $lang "services" -}}
+{{- with $s.data_source }}
+  {{- $services = index hugo.Data $lang . -}}
+{{- end -}}
+
+{{- with $services }}
+<section class="services section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section-header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Services grid */}}
+    <div class="services__grid">
+      {{- range $i, $service := $services }}
+        <div class="services__card card animate-fade-up delay-{{ add $i 1 }}">
+          <div class="services__icon">
+            {{- partial "icon.html" (dict "name" ($service.icon | default "circle") "size" 32) -}}
+          </div>
+          <h3 class="services__name">{{ $service.name }}</h3>
+          <p class="services__description">{{ $service.description }}</p>
+          <span class="services__price">{{ $service.price }}</span>
+        </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{- $b := site.Params.business -}}
+<section class="section contacto">
+  <div class="container">
+    <header class="section-header animate-fade-up">
+      {{ with .Params.label }}<span class="section-label">{{ . }}</span>{{ end }}
+      <h1 class="section-heading">{{ .Title }}</h1>
+      {{ with .Params.description }}<p class="section-sub">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="contacto__rejilla">
+      {{- with partial "whatsapp-url.html" (i18n "whatsapp_cita") }}
+      <a class="contacto__tarjeta card" href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">
+        {{ partial "icono-whatsapp.html" 32 }}
+        <h2 class="contacto__titulo">WhatsApp</h2>
+        <p>{{ $b.phone }}</p>
+        <span class="btn btn-primary">{{ i18n "whatsapp_label" }}</span>
+      </a>
+      {{- end }}
+      {{- with $b.phone }}
+      <a class="contacto__tarjeta card" href="tel:{{ $b.phone_intl | default . | replaceRE `\s` `` }}">
+        {{ partial "icon.html" (dict "name" "phone" "size" 32) }}
+        <h2 class="contacto__titulo">{{ i18n "kf_phone" }}</h2>
+        <p>{{ . }}</p>
+        <span class="btn btn-outline">{{ i18n "llamar" }}</span>
+      </a>
+      {{- end }}
+      {{- with site.Params.instagram }}
+      <a class="contacto__tarjeta card" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+        {{ partial "icon.html" (dict "name" "instagram" "size" 32) }}
+        <h2 class="contacto__titulo">Instagram</h2>
+        <p>@innovapatriyana</p>
+        <span class="btn btn-outline">Ver Instagram</span>
+      </a>
+      {{- end }}
+      <div class="contacto__tarjeta card">
+        {{ partial "icon.html" (dict "name" "home" "size" 32) }}
+        <h2 class="contacto__titulo">{{ i18n "address" }}</h2>
+        <address>{{ $b.street }}<br>{{ $b.postalCode }} {{ $b.city }}</address>
+        <a class="btn btn-outline" href="{{ "donde-estamos/" | relURL }}">Cómo llegar</a>
+      </div>
+    </div>
+
+    {{ with .Content }}<div class="prose contacto__texto">{{ . }}</div>{{ end }}
+  </div>
+</section>
+{{ end }}
