@@ -29,6 +29,7 @@ sections:
   - type: cta-banner
     enabled: true
     heading: "¿Te damos cita?"
+    phone: "+34 689 84 88 48"
     description: "Llámanos o escríbenos por WhatsApp y buscamos el hueco que mejor te venga."
     cta:
       text: "Llamar ahora"

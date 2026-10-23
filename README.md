@@ -49,7 +49,21 @@ categories:
         price: "00 €"
 ```
 
-**Horario**: crear `data/es/opening_hours.yaml` con los siete días de lunes a domingo (`day`, `open`, `close` o `closed: true`). Sale en «Dónde estamos» y en el JSON-LD.
+**Horario**: crear `data/es/opening_hours.yaml` con la clave raíz `days:` y los siete días en orden de lunes a domingo (`day`, `open`, `close` o `closed: true`). Sale en «Dónde estamos» y en el JSON-LD.
+
+```yaml
+days:
+  - day: "Lunes"
+    open: "10:00"
+    close: "14:00"
+  # … hasta el domingo
+  - day: "Domingo"
+    closed: true
+```
+
+**Precios**: escríbelos como se leen («12,50 €»); la coma se convierte en punto para los datos de Google.
+
+**Fuentes**: el tema carga Google Fonts, que recibe la IP de quien visita. Hay que recogerlo en la política de privacidad o alojar las fuentes en el repo antes de publicar.
 
 Nada de esto se inventa: si un dato no lo han dado las titulares, no se pone.
 

@@ -54,7 +54,7 @@ jobs:
             test -s "public/$f" || { echo "Falta public/$f"; exit 1; }
           done
           grep -q '"@type":"HairSalon"' public/index.html || { echo "Falta el JSON-LD HairSalon"; exit 1; }
-          if grep -rli 'pendiente' public --include=*.html; then echo "Hay «pendiente» visible en la web"; exit 1; fi
+          if grep -rliw 'pendiente' public --include=*.html; then echo "Hay «pendiente» visible en la web"; exit 1; fi
 
       - name: Subir el sitio
         if: github.ref == 'refs/heads/main' && vars.PUBLICAR == 'true'

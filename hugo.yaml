@@ -39,7 +39,7 @@ menus:
       weight: 4
 
 params:
-  description: "Peluquería unisex en Toledo (C/ Río Alberche 25, Polígono de Santa María de Benquerencia). Corte y peinado para mujer y hombre, y productos de peluquería. Pide cita por teléfono o WhatsApp."
+  description: "Peluquería unisex en Toledo (C/ Río Alberche 25, Polígono de Santa María de Benquerencia). Servicios de peluquería para mujer y hombre, y productos de peluquería. Pide cita por teléfono o WhatsApp."
   logo:
     name: "APM Innova"
     dot: true
@@ -57,7 +57,7 @@ params:
     type: "HairSalon"
     phone: "689 84 88 48"
     phone_intl: "+34 689 84 88 48"
-    street: "C/ Río Alberche, 25"
+    street: "C/ Río Alberche 25"
     city: "Toledo"
     postalCode: "45007"
     region: "Toledo"

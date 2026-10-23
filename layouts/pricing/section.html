@@ -12,7 +12,7 @@
         {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
       {{- end -}}
     {{- end -}}
-    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $price := .price | replaceRE "," "." | replaceRE "[^0-9.]" "" -}}
     {{- $currency := "EUR" -}}
     {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
     {{- $service = merge $service (dict "offers" $offer) -}}
@@ -29,7 +29,7 @@
         {{- $service = merge $service (dict "description" (printf "Duration: %s" .)) -}}
       {{- end -}}
     {{- end -}}
-    {{- $price := .price | replaceRE "[^0-9.]" "" -}}
+    {{- $price := .price | replaceRE "," "." | replaceRE "[^0-9.]" "" -}}
     {{- $currency := "EUR" -}}
     {{- $offer := dict "@type" "Offer" "price" $price "priceCurrency" $currency -}}
     {{- $service = merge $service (dict "offers" $offer) -}}
@@ -103,7 +103,7 @@
             <tr
               class="pricing__row"
               data-name="{{ .name | lower }}"
-              data-tags="{{ delimit .tags " " }}"
+              data-tags="{{ with .tags }}{{ delimit . " " }}{{ end }}"
               data-description="{{ .description | default .duration | lower }}"
             >
               <td class="pricing__service">{{ .name }}</td>
