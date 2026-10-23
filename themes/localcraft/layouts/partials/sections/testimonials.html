@@ -1,0 +1,71 @@
+{{- $s := .section -}}
+{{- $lang := .page.Language.Lang -}}
+{{- $testimonials := index hugo.Data $lang "testimonials" -}}
+{{- with $s.data_source }}
+  {{- $testimonials = index hugo.Data $lang . -}}
+{{- end -}}
+
+{{- with $testimonials }}
+<section class="testimonials section">
+  <div class="container">
+    {{/* Section header */}}
+    <div class="section-header animate-fade-up">
+      {{- with $s.label }}
+        <span class="section-label testimonials__label">{{ . }}</span>
+      {{- end }}
+      {{- with $s.heading }}
+        <h2 class="section-heading testimonials__heading">{{ . }}</h2>
+      {{- end }}
+      {{- with $s.description }}
+        <p class="section-sub testimonials__sub">{{ . }}</p>
+      {{- end }}
+    </div>
+
+    {{/* Testimonials grid */}}
+    <div class="testimonials__grid">
+      {{- range $i, $testimonial := $testimonials }}
+        <div class="testimonials__card animate-fade-up delay-{{ add $i 1 }}">
+          {{/* Stars rating */}}
+          <div class="testimonials__stars" role="img" aria-label="{{ $testimonial.rating }} {{ i18n "stars_of_5" | default "out of 5 stars" }}">
+            {{- range seq $testimonial.rating }}
+              <span class="testimonials__star">{{- partial "icon.html" (dict "name" "star" "size" 20) -}}</span>
+            {{- end }}
+          </div>
+
+          {{/* Quote */}}
+          <blockquote class="testimonials__quote">
+            {{ $testimonial.text }}
+          </blockquote>
+
+          {{/* Author */}}
+          <cite class="testimonials__author">
+            {{/* Avatar with initials */}}
+            {{- $nameParts := split $testimonial.name " " -}}
+            {{- $initials := "" -}}
+            {{- range $nameParts -}}
+              {{- $initials = printf "%s%s" $initials (substr . 0 1) -}}
+            {{- end -}}
+            <span class="testimonials__avatar">{{ $initials }}</span>
+            <div class="testimonials__info">
+              <span class="testimonials__name">{{ $testimonial.name }}</span>
+              <span class="testimonials__detail">{{ $testimonial.detail }}</span>
+            </div>
+          </cite>
+        </div>
+      {{- end }}
+    </div>
+
+    {{/* CTA */}}
+    {{- $reviewUrl := $s.cta.url | default site.Params.review_url -}}
+    {{- $reviewText := $s.cta.text | default (i18n "leave_review" | default "Leave a review") -}}
+    {{- with $reviewUrl }}
+      <div class="testimonials__cta animate-fade-up">
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-terra">
+          {{- partial "icon.html" (dict "name" "star" "size" 20) -}}
+          {{ $reviewText }}
+        </a>
+      </div>
+    {{- end }}
+  </div>
+</section>
+{{- end }}

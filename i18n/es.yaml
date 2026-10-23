@@ -1,0 +1,124 @@
+# Traducción al español del tema Localcraft (el tema solo trae inglés y polaco).
+
+# General
+home: "Inicio"
+nav_home: "Inicio"
+nav_blog: "Blog"
+footer_copyright: "Todos los derechos reservados."
+powered_by: "Hecho con"
+before: "Antes"
+after: "Después"
+all: "Todo"
+close: "Cerrar"
+previous: "Anterior"
+lightbox_label: "Imagen ampliada"
+main_navigation: "Navegación principal"
+language_switch: "Cambiar idioma"
+skip_to_content: "Saltar al contenido"
+
+# Sobre nosotras
+about_us: "Quiénes somos"
+our_values: "Lo que nos importa"
+values_heading: "¿Por qué venir?"
+our_team: "El equipo"
+team_heading: "Quién te atiende"
+
+# Blog
+blog: "Blog"
+read_more: "Leer más"
+min_read: "min de lectura"
+back_to_blog: "Volver al blog"
+related_posts: "Artículos relacionados"
+no_posts: "Todavía no hay artículos."
+prev: "Anterior"
+next: "Siguiente"
+pagination: "Paginación"
+post: "artículo"
+posts: "artículos"
+
+# Taxonomías
+tags: "Etiquetas"
+categories: "Categorías"
+no_terms: "Todavía no hay nada."
+back_to: "Volver a"
+
+# Opiniones
+stars_of_5: "de 5 estrellas"
+leave_review: "Déjanos una reseña"
+
+# Portada
+years_of_experience:
+  one: "año de experiencia"
+  other: "años de experiencia"
+
+# Precios
+filter_by_category: "Filtrar por categoría"
+service: "Servicio"
+service_info: "Detalle"
+price: "Precio"
+
+# Galería
+ba_slider_label: "Comparación antes y después. Arrastra para comparar."
+ba_handle_label: "Control de comparación"
+
+# Preguntas frecuentes
+faq: "Preguntas frecuentes"
+faq_heading: "Preguntas frecuentes"
+
+# Dónde estamos
+location: "Dónde estamos"
+address: "Dirección"
+contact: "Contacto"
+opening_hours: "Horario"
+closed: "Cerrado"
+open_in_google_maps: "Abrir en Google Maps"
+map_aria_label: "Mapa con la ubicación de la peluquería"
+our_place: "Nuestro salón"
+status_open: "Abierto ahora"
+status_closed: "Cerrado ahora"
+status_closing_soon: "Cierra pronto"
+
+# Cookies
+cookie_message: "Usamos cookies de analítica para mejorar la web. Si aceptas, nos permites usarlas con ese fin."
+cookie_accept: "Aceptar"
+cookie_decline: "Rechazar"
+
+# Botón de apoyo (desactivado en esta web)
+support_title: "Apoya este proyecto"
+support_description: "Si te resulta útil, invítame a un café."
+support_button: "Invitar a un café"
+support_qr_alt: "Escanea el código QR"
+
+# Datos clave
+key_facts_label: "Lo importante"
+key_facts_heading: "De un vistazo"
+kf_location: "Dirección"
+kf_hours: "Horario"
+kf_experience: "Experiencia"
+kf_years: "años"
+kf_phone: "Teléfono"
+kf_email: "Correo"
+kf_specialties: "Especialidades"
+kf_parking: "Aparcamiento"
+kf_payment: "Formas de pago"
+kf_languages: "Idiomas"
+
+# 404
+404_title: "No encontramos esta página"
+404_description: "La página que buscas no existe o ha cambiado de sitio. Vuelve al inicio o usa los enlaces de abajo."
+404_home_button: "Ir al inicio"
+404_helpful_links: "Enlaces útiles"
+404_recent_posts: "Últimos artículos"
+
+# Credenciales
+show_more: "Ver más"
+show_less: "Ver menos"
+credentials: "Títulos y formación"
+
+# WhatsApp (propio de esta web)
+whatsapp_label: "Escríbenos por WhatsApp"
+whatsapp_cita: "Hola, quería pedir cita en APM Innova."
+
+
+
+llamar: "Llamar"

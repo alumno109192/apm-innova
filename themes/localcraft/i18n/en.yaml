@@ -1,0 +1,112 @@
+# Localcraft Theme - English translations (defaults)
+
+# General
+home: "Home"
+footer_copyright: "All rights reserved."
+powered_by: "Powered by"
+before: "Before"
+after: "After"
+all: "All"
+close: "Close"
+previous: "Previous"
+lightbox_label: "Image lightbox"
+main_navigation: "Main navigation"
+language_switch: "Language switch"
+
+# About
+about_us: "About Us"
+our_values: "Our Values"
+values_heading: "Why Choose Us?"
+our_team: "Our Team"
+team_heading: "Meet the Team"
+
+# Blog
+blog: "Blog"
+read_more: "Read more"
+min_read: "min read"
+back_to_blog: "Back to blog"
+related_posts: "Related posts"
+no_posts: "No posts yet."
+prev: "Previous"
+next: "Next"
+pagination: "Pagination"
+post: "post"
+posts: "posts"
+
+# Taxonomy
+tags: "Tags"
+categories: "Categories"
+no_terms: "No terms yet."
+back_to: "Back to"
+
+# Testimonials
+stars_of_5: "out of 5 stars"
+leave_review: "Leave a review"
+
+# Hero
+years_of_experience:
+  one: "year of experience"
+  other: "years of experience"
+
+# Pricing
+filter_by_category: "Filter by category"
+service: "Service"
+service_info: "Info"
+price: "Price"
+
+# Gallery
+ba_slider_label: "Before and after comparison. Drag the slider to compare."
+ba_handle_label: "Comparison slider"
+
+# FAQ
+faq: "FAQ"
+faq_heading: "Frequently Asked Questions"
+
+# Location
+location: "Location"
+address: "Address"
+contact: "Contact"
+opening_hours: "Opening Hours"
+closed: "Closed"
+open_in_google_maps: "Open in Google Maps"
+map_aria_label: "Map showing business location"
+status_open: "Open now"
+status_closed: "Closed now"
+status_closing_soon: "Closing soon"
+
+# Cookie Consent
+cookie_message: "We use cookies and analytics to improve your experience. By accepting, you agree to our use of cookies for analytics purposes."
+cookie_accept: "Accept"
+cookie_decline: "Decline"
+
+# Support Button
+support_title: "Support this project"
+support_description: "If you find this useful, consider buying me a coffee!"
+support_button: "Buy Me a Coffee"
+support_qr_alt: "Scan QR code to support"
+
+# Key Facts
+key_facts_label: "Key Information"
+key_facts_heading: "At a Glance"
+kf_location: "Location"
+kf_hours: "Opening Hours"
+kf_experience: "Experience"
+kf_years: "years"
+kf_phone: "Phone"
+kf_email: "E-mail"
+kf_specialties: "Specialties"
+kf_parking: "Parking"
+kf_payment: "Payment Methods"
+kf_languages: "Languages Spoken"
+
+# 404 Page
+404_title: "Page Not Found"
+404_description: "The page you're looking for doesn't exist or has been moved. Try searching or navigate back to the homepage."
+404_home_button: "Go to Homepage"
+404_helpful_links: "Helpful Links"
+404_recent_posts: "Recent Posts"
+
+# Credentials
+show_more: "Show more"
+show_less: "Show less"
+credentials: "Credentials & Certifications"

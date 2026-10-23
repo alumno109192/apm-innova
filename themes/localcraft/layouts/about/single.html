@@ -1,0 +1,117 @@
+{{ define "head" }}
+{{- $lang := .Language.Lang -}}
+{{- $team := index hugo.Data $lang "team" -}}
+{{- range $team }}
+  {{- partial "person-schema.html" (merge . (dict "url" $.Permalink)) -}}
+{{- end }}
+{{ end }}
+
+{{ define "main" }}
+
+{{/* Hero Section */}}
+<section class="about-hero section">
+  <div class="container">
+    <div class="about-hero__content">
+      <span class="section-label animate-fade-up">{{ .Params.eyebrow | default (i18n "about_us") }}</span>
+      <h1 class="about-hero__heading animate-fade-up delay-1">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="about-hero__description animate-fade-up delay-2">{{ . }}</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* Render dynamic sections if configured */}}
+{{ if .Params.sections }}
+  {{ partial "sections-renderer.html" . }}
+{{ else }}
+  {{/* Fallback: render default sections for backward compatibility */}}
+  {{- $lang := .Language.Lang -}}
+
+  {{/* Values Section */}}
+  {{ with index hugo.Data $lang "values" }}
+  <section class="about-values section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{{ i18n "our_values" }}</span>
+        <h2 class="section-heading">{{ i18n "values_heading" }}</h2>
+      </div>
+
+      <div class="about-values__grid">
+        {{ range . }}
+          <div class="about-values__card card animate-fade-up">
+            <div class="about-values__icon">
+              {{ partial "icon.html" (dict "name" .icon "size" 32) }}
+            </div>
+            <h3 class="about-values__title">{{ .title }}</h3>
+            <p class="about-values__description">{{ .description }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* Key Facts Section */}}
+  {{ partial "key-facts.html" . }}
+
+  {{/* Team Section */}}
+  {{ with index hugo.Data $lang "team" }}
+  <section class="about-team section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{{ i18n "our_team" }}</span>
+        <h2 class="section-heading">{{ i18n "team_heading" }}</h2>
+      </div>
+
+      <div class="about-team__members">
+        {{ range $index, $member := . }}
+          <div class="about-team__member {{ if (modBool $index 2) }}about-team__member--reverse{{ end }} animate-fade-up">
+            <div class="about-team__image">
+              {{ if $member.image }}
+                {{- partial "image.html" (dict
+                  "src" $member.image
+                  "alt" $member.name
+                  "loading" "lazy"
+                  "sizes" "(min-width: 768px) 400px, 100vw"
+                  "widths" (slice 300 400 600 800)
+                  "fit" ($member.imageFit | default "resize")
+                  "aspectRatio" ($member.imageAspectRatio | default "")
+                ) -}}
+              {{ else }}
+                {{/* Avatar placeholder with initials */}}
+                <div class="about-team__avatar">
+                  <span class="about-team__initials">{{ $member.initials }}</span>
+                </div>
+              {{ end }}
+            </div>
+            <div class="about-team__content">
+              <h3 class="about-team__name">{{ $member.name }}</h3>
+              <span class="about-team__role">{{ $member.role }}</span>
+              <p class="about-team__bio">{{ $member.bio }}</p>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* Page content from markdown */}}
+  {{ with .Content }}
+  <section class="about-content section">
+    <div class="container">
+      {{ with $.Params.content_heading }}
+        <div class="section-header">
+          <h2 class="section-heading">{{ . }}</h2>
+        </div>
+      {{ end }}
+      <div class="prose animate-fade-up">
+        {{ . }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+{{ end }}
+
+{{ end }}

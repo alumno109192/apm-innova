@@ -1,0 +1,104 @@
+# Web de APM Innova (peluquería unisex, Toledo).
+# Tema: Localcraft (MIT), copiado en themes/localcraft (ver themes/localcraft/ORIGEN-COMMIT).
+# Los datos marcados «pendiente» en los comentarios NO se muestran: se rellenan cuando las titulares los den.
+
+# En GitHub Actions se sobrescribe con la URL real de Pages (--baseURL).
+baseURL: https://alumno109192.github.io/apm-innova/
+locale: es-ES
+defaultContentLanguage: es
+title: "APM Innova · Peluquería unisex en Toledo"
+theme: localcraft
+enableRobotsTXT: true
+
+languages:
+  es:
+    label: Español
+    locale: es-ES
+    weight: 1
+
+taxonomies: {}
+
+disableKinds:
+  - taxonomy
+  - term
+  - rss
+
+menus:
+  main:
+    - name: "Servicios"
+      pageRef: "/servicios"
+      weight: 1
+    - name: "Dónde estamos"
+      pageRef: "/donde-estamos"
+      weight: 3
+    - name: "Contacto"
+      pageRef: "/contacto"
+      weight: 4
+
+params:
+  description: "Peluquería unisex en Toledo (C/ Río Alberche 25, Polígono de Santa María de Benquerencia). Servicios de peluquería para mujer y hombre. Pide cita por teléfono."
+  logo:
+    name: "APM Innova"
+    dot: true
+  # Colores: los del tema hasta que haya identidad visual (agente `diseno`).
+  # colors: {}
+
+  # WhatsApp del salón, en formato internacional sin «+» ni espacios.
+  # pendiente: confirmar con Ana o Patricia que el 689 84 88 48 tiene WhatsApp.
+  # Al descomentarlo aparecen el botón flotante y el WhatsApp en contacto y dónde estamos.
+  # whatsapp: "34689848848"
+  instagram: "https://www.instagram.com/innovapatriyana/"
+
+  business:
+    name: "APM Innova"
+    # Tipo de schema.org que pide el plan técnico.
+    type: "HairSalon"
+    phone: "689 84 88 48"
+    phone_intl: "+34 689 84 88 48"
+    street: "C/ Río Alberche 25"
+    city: "Toledo"
+    postalCode: "45007"
+    region: "Toledo"
+    country: "ES"
+    areaServed: "Toledo"
+    # pendiente: coordenadas exactas del local (lat, lng). Sin ellas no se pinta el mapa,
+    # solo el enlace a Google Maps con la dirección.
+    # lat:
+    # lng:
+    # pendiente: año de apertura (start_year), email, horario confirmado, formas de pago.
+    # tax_ids (NIF de cada titular) van en el aviso legal cuando lleguen.
+
+  footer:
+    description: "Peluquería unisex en Toledo. Ana y Patricia."
+    columns:
+      - title: "La web"
+        links:
+          - name: "Servicios"
+            url: "servicios/"
+          - name: "Dónde estamos"
+            url: "donde-estamos/"
+          - name: "Contacto"
+            url: "contacto/"
+      - title: "Contacto"
+        type: "contact"
+    social:
+      - platform: "instagram"
+        url: "https://www.instagram.com/innovapatriyana/"
+    show_credit: true
+
+  # pendiente: enlace para dejar reseña en Google, cuando exista la ficha de Google Business.
+  # review_url: ""
+
+  support_button:
+    enabled: false
+  announcement:
+    enabled: false
+
+  images:
+    quality: 80
+    widths: [400, 800, 1200]
+    lazy_loading: true
+
+sitemap:
+  changefreq: monthly
+  priority: 0.5

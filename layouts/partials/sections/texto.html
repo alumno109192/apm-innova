@@ -1,0 +1,9 @@
+{{/* Sección «texto»: un párrafo corto centrado, con título opcional. */}}
+{{- $s := .section -}}
+<section class="texto section">
+  <div class="container texto__inner animate-fade-up">
+    {{- with $s.label }}<span class="section-label">{{ . }}</span>{{ end }}
+    {{- with $s.heading }}<h2 class="section-heading">{{ . }}</h2>{{ end }}
+    {{- with $s.text }}<div class="section-sub">{{ . | markdownify }}</div>{{ end }}
+  </div>
+</section>

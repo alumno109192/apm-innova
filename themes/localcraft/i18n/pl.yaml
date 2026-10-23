@@ -1,0 +1,114 @@
+# Localcraft Theme - Polish translations (defaults)
+
+# General
+home: "Strona główna"
+footer_copyright: "Wszelkie prawa zastrzeżone."
+powered_by: "Wspierane przez"
+before: "Przed"
+after: "Po"
+all: "Wszystkie"
+close: "Zamknij"
+previous: "Poprzednia"
+lightbox_label: "Podgląd zdjęcia"
+main_navigation: "Nawigacja główna"
+language_switch: "Zmiana języka"
+
+# About
+about_us: "O nas"
+our_values: "Nasze wartości"
+values_heading: "Dlaczego my?"
+our_team: "Nasz zespół"
+team_heading: "Poznaj nas bliżej"
+
+# Blog
+blog: "Blog"
+read_more: "Czytaj dalej"
+min_read: "min czytania"
+back_to_blog: "Wróć do bloga"
+related_posts: "Powiązane artykuły"
+no_posts: "Brak artykułów."
+prev: "Poprzednia"
+next: "Następna"
+pagination: "Nawigacja stron"
+post: "artykuł"
+posts: "artykułów"
+
+# Taxonomy
+tags: "Tagi"
+categories: "Kategorie"
+no_terms: "Brak wyników."
+back_to: "Wróć do"
+
+# Testimonials
+stars_of_5: "z 5 gwiazdek"
+leave_review: "Zostaw opinię"
+
+# Hero
+years_of_experience:
+  one: "rok doświadczenia"
+  few: "lata doświadczenia"
+  many: "lat doświadczenia"
+  other: "lat doświadczenia"
+
+# Pricing
+filter_by_category: "Filtruj według kategorii"
+service: "Usługa"
+service_info: "Opis"
+price: "Cena"
+
+# Gallery
+ba_slider_label: "Porównanie przed i po. Przeciągnij suwak, aby porównać."
+ba_handle_label: "Suwak porównania"
+
+# FAQ
+faq: "FAQ"
+faq_heading: "Najczęściej zadawane pytania"
+
+# Location
+location: "Lokalizacja"
+address: "Adres"
+contact: "Kontakt"
+opening_hours: "Godziny otwarcia"
+closed: "Zamknięte"
+open_in_google_maps: "Otwórz w Google Maps"
+map_aria_label: "Mapa z lokalizacją"
+status_open: "Teraz otwarte"
+status_closed: "Teraz zamknięte"
+status_closing_soon: "Zamykamy wkrótce"
+
+# Cookie Consent
+cookie_message: "Używamy plików cookie i analityki, aby poprawić Twoje doświadczenia. Akceptując, zgadzasz się na wykorzystanie plików cookie do celów analitycznych."
+cookie_accept: "Akceptuj"
+cookie_decline: "Odrzuć"
+
+# Support Button
+support_title: "Wesprzyj projekt"
+support_description: "Jeśli Localcraft jest dla Ciebie przydatny, postaw mi kawę!"
+support_button: "Postaw kawę"
+support_qr_alt: "Zeskanuj kod QR, aby wesprzeć"
+
+# Key Facts
+key_facts_label: "Kluczowe informacje"
+key_facts_heading: "Najważniejsze w skrócie"
+kf_location: "Lokalizacja"
+kf_hours: "Godziny otwarcia"
+kf_experience: "Doświadczenie"
+kf_years: "lat"
+kf_phone: "Telefon"
+kf_email: "E-mail"
+kf_specialties: "Specjalizacje"
+kf_parking: "Parking"
+kf_payment: "Metody płatności"
+kf_languages: "Obsługiwane języki"
+
+# 404 Page
+404_title: "Strona nie znaleziona"
+404_description: "Strona, której szukasz, nie istnieje lub została przeniesiona. Wypróbuj wyszukiwanie lub wróć na stronę główną."
+404_home_button: "Przejdź do strony głównej"
+404_helpful_links: "Przydatne linki"
+404_recent_posts: "Ostatnie wpisy"
+
+# Credentials
+show_more: "Pokaż więcej"
+show_less: "Pokaż mniej"
+credentials: "Certyfikaty i kwalifikacje"

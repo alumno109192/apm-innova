@@ -1,0 +1,35 @@
+{{ define "head" }}
+  {{ with .Params.redirect }}
+    <meta http-equiv="refresh" content="0; url={{ . }}">
+  {{ end }}
+{{ end }}
+
+{{ define "main" }}
+  {{/* Handle redirect if specified */}}
+  {{ with .Params.redirect }}
+    <script>window.location.href = "{{ . }}";</script>
+    <p>Redirecting to <a href="{{ . }}">{{ . }}</a>...</p>
+  {{ end }}
+
+  {{/* Render content from _index.md if any */}}
+  {{ with .Content }}
+    <div class="container">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{/* Render dynamic sections */}}
+  {{ partial "sections-renderer.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+  {{/* Load section-specific JavaScript if sections are enabled */}}
+  {{ range .Params.sections }}
+    {{ if and .enabled (eq .type "faq") }}
+      {{- $faqJs := resources.Get "js/faq.js" | minify | fingerprint -}}
+      {{- with $faqJs -}}
+        <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
+      {{- end -}}
+    {{ end }}
+  {{ end }}
+{{ end }}

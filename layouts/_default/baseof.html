@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+<head>
+  {{ partial "head.html" . }}
+  {{ block "head" . }}{{ end }}
+</head>
+<body>
+  {{- partial "gtm-body.html" . -}}
+  <a href="#main-content" class="skip-link">{{ i18n "skip_to_content" }}</a>
+  {{- partial "announcement.html" . -}}
+  {{ partial "nav.html" . }}
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  
+  {{- partial "whatsapp-flotante.html" . -}}
+
+  {{- $navJs := resources.Get "js/nav.js" | minify | fingerprint -}}
+  {{- with $navJs -}}
+    <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}"></script>
+  {{- end -}}
+
+  {{ block "scripts" . }}{{ end }}
+
+  {{- partial "cookie-consent.html" . -}}
+</body>
+</html>

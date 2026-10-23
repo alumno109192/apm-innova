@@ -1,0 +1,19 @@
+{{/*
+  url.html - generates correct relative URL for paths from data/front matter
+
+  Usage:
+    {{ partial "url.html" "/images/photo.jpg" }}
+    {{ partial "url.html" .url }}
+
+  Handles both:
+    - Root domain: https://example.com/ → /images/photo.jpg
+    - Subdirectory: https://example.com/demo/ → /demo/images/photo.jpg
+    - Special protocols: tel:, mailto:, https: → passed through unchanged
+*/}}
+{{- if hasPrefix . "tel:" -}}
+  {{- replace . "+" "%2B" -}}
+{{- else if or (hasPrefix . "mailto:") (hasPrefix . "http://") (hasPrefix . "https://") -}}
+  {{- . -}}
+{{- else -}}
+  {{- strings.TrimPrefix "/" . | relURL -}}
+{{- end -}}
