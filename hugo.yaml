@@ -28,9 +28,6 @@ menus:
     - name: "Servicios"
       pageRef: "/servicios"
       weight: 1
-    - name: "Productos"
-      pageRef: "/productos"
-      weight: 2
     - name: "Dónde estamos"
       pageRef: "/donde-estamos"
       weight: 3
@@ -39,7 +36,7 @@ menus:
       weight: 4
 
 params:
-  description: "Peluquería unisex en Toledo (C/ Río Alberche 25, Polígono de Santa María de Benquerencia). Servicios de peluquería para mujer y hombre, y productos de peluquería. Pide cita por teléfono o WhatsApp."
+  description: "Peluquería unisex en Toledo (C/ Río Alberche 25, Polígono de Santa María de Benquerencia). Servicios de peluquería para mujer y hombre. Pide cita por teléfono."
   logo:
     name: "APM Innova"
     dot: true
@@ -48,7 +45,8 @@ params:
 
   # WhatsApp del salón, en formato internacional sin «+» ni espacios.
   # pendiente: confirmar con Ana o Patricia que el 689 84 88 48 tiene WhatsApp.
-  whatsapp: "34689848848"
+  # Al descomentarlo aparecen el botón flotante y el WhatsApp en contacto y dónde estamos.
+  # whatsapp: "34689848848"
   instagram: "https://www.instagram.com/innovapatriyana/"
 
   business:
@@ -77,8 +75,6 @@ params:
         links:
           - name: "Servicios"
             url: "servicios/"
-          - name: "Productos"
-            url: "productos/"
           - name: "Dónde estamos"
             url: "donde-estamos/"
           - name: "Contacto"

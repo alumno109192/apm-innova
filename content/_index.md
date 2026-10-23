@@ -1,6 +1,6 @@
 ---
 title: "APM Innova · Peluquería unisex en Toledo"
-description: "Peluquería unisex en Toledo, en C/ Río Alberche 25 (Polígono de Santa María de Benquerencia). Pide cita por teléfono o WhatsApp y pregunta por nuestros productos de peluquería."
+description: "Peluquería unisex en Toledo, en C/ Río Alberche 25 (Polígono de Santa María de Benquerencia). Pide cita por teléfono en el 689 84 88 48."
 
 sections:
   - type: hero
@@ -8,29 +8,33 @@ sections:
     eyebrow: "Peluquería unisex en Toledo"
     heading: "Tu peluquería en el Polígono de Toledo"
     heading_italic: "Polígono"
-    description: "Ana y Patricia te atienden en C/ Río Alberche 25, en Santa María de Benquerencia. Peluquería para mujer y hombre, y productos de peluquería para cuidarte en casa. Pide cita por teléfono o WhatsApp."
+    description: "Ana y Patricia te atienden en C/ Río Alberche 25, en Santa María de Benquerencia. Peluquería para mujer y hombre. Pide cita por teléfono."
     cta_primary:
+      text: "Llamar: 689 84 88 48"
+      url: "tel:+34689848848"
+    cta_secondary:
       text: "Cómo llegar"
       url: "/donde-estamos/"
-    cta_secondary:
-      text: "Ver productos"
-      url: "/productos/"
 
-  - type: productos
+  - type: texto
     enabled: true
     label: "Productos"
-    heading: "Productos de peluquería para casa"
-    description: "Champús, ceras, gominas y más productos de peluquería. Pregúntanos por WhatsApp y te lo dejamos preparado para recoger en el salón."
-    limit: 3
+    heading: "También para casa"
+    text: "En el salón tenemos a la venta productos de peluquería, como champús, ceras y gominas, para que sigas cuidándote el pelo en casa."
+
+  - type: instagram
+    enabled: true
+    label: "Instagram"
+    heading: "Nuestro trabajo, en Instagram"
+    description: "Lo que hacemos en el salón, en nuestra cuenta de Instagram."
     cta:
-      text: "Ver productos"
-      url: "/productos/"
+      text: "Ver @innovapatriyana"
 
   - type: cta-banner
     enabled: true
     heading: "¿Te damos cita?"
     phone: "+34 689 84 88 48"
-    description: "Llámanos o escríbenos por WhatsApp y buscamos el hueco que mejor te venga."
+    description: "Llámanos y buscamos el hueco que mejor te venga."
     cta:
       text: "Llamar ahora"
 ---

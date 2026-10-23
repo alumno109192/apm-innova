@@ -50,7 +50,7 @@ jobs:
 
       - name: Comprobar el resultado
         run: |
-          for f in index.html servicios/index.html productos/index.html donde-estamos/index.html contacto/index.html sitemap.xml robots.txt; do
+          for f in index.html servicios/index.html donde-estamos/index.html contacto/index.html sitemap.xml robots.txt; do
             test -s "public/$f" || { echo "Falta public/$f"; exit 1; }
           done
           grep -q '"@type":"HairSalon"' public/index.html || { echo "Falta el JSON-LD HairSalon"; exit 1; }

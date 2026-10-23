@@ -6,13 +6,16 @@ Web de **APM Innova**, peluquería unisex en Toledo (C/ Río Alberche 25): sitio
 
 | Página | Ruta | De dónde salen los datos |
 |---|---|---|
-| Inicio | `/` | `content/_index.md` (secciones) |
-| Servicios | `/servicios/` | `data/es/pricing.yaml` (aún no existe: sin precios, la página invita a pedirlos por teléfono o WhatsApp) |
-| Productos | `/productos/` | `data/es/productos.yaml` (solo salen los productos con `publicar: true`) |
+| Inicio | `/` | `content/_index.md` (secciones: portada, productos en un párrafo, Instagram y llamada) |
+| Servicios | `/servicios/` | `data/es/pricing.yaml` (aún no existe: sin precios, la página invita a pedirlos por teléfono) |
 | Dónde estamos | `/donde-estamos/` | `params.business` en `hugo.yaml` (el mapa sale solo si hay `lat` y `lng`) |
-| Contacto | `/contacto/` | `params.business`, `params.whatsapp` y `params.instagram` |
+| Contacto | `/contacto/` | `params.business`, `params.instagram` y `params.whatsapp` |
 
-SEO: `sitemap.xml` y `robots.txt` los genera Hugo; el JSON-LD `HairSalon` sale en la portada desde `params.business`. El botón flotante de WhatsApp y el «Lo quiero» de cada producto abren `wa.me` con el mensaje ya escrito.
+Es una web de **presentación para salir en Google**: no vende ni cobra (alcance decidido el 2026-10-23).
+
+SEO: `sitemap.xml` y `robots.txt` los genera Hugo; el JSON-LD `HairSalon` sale en la portada desde `params.business`.
+
+**WhatsApp**: está preparado pero apagado. Al descomentar `params.whatsapp` en `hugo.yaml` aparecen el botón flotante y el WhatsApp en contacto y en dónde estamos, con el mensaje ya escrito (`wa.me`). Se enciende cuando el salón confirme el número.
 
 ## Trabajar en local
 
@@ -25,18 +28,9 @@ hugo --gc --minify --panicOnWarning   # lo mismo que compila la CI
 
 ## Añadir datos
 
-**Un producto**, en `data/es/productos.yaml`:
+**Publicaciones de Instagram en la portada**: en `data/es/instagram.yaml`, la URL de cada una (`https://www.instagram.com/p/…/`). Se incrustan con el embed oficial y el script de Instagram solo se carga si hay alguna. Si en la foto se reconoce a una clienta, hace falta su permiso.
 
-```yaml
-productos:
-  - nombre: "Champú …"
-    marca: "…"
-    formato: "250 ml"
-    precio: "00,00 € (00,00 €/l)"          # IVA incluido y precio por litro o kilo
-    descripcion: "…"
-    foto: "/images/productos/champu.jpg"   # la foto va en assets/images/productos/
-    publicar: true
-```
+**Foto de portada**: dejar la foto en `assets/images/` y poner `image: "/images/<archivo>.jpg"` en la sección `hero` de `content/_index.md`. Sin foto, el hueco no se enseña.
 
 **Servicios y precios**: crear `data/es/pricing.yaml`:
 
